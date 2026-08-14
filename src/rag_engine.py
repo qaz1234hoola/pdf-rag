@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 from groq import Groq
 from typing import List, Dict, Any, Tuple
 
@@ -14,12 +15,27 @@ RULES:
    "Information not found in the provided document."
 """
 
+
 class RAGEngine:
     def __init__(self, api_key: str = None, model_name: str = "llama-3.3-70b-versatile"):
         """
-        Initializes Groq client with API key and selects Llama 3.3 70B model.
+        Initializes Groq client with API key, checking in order:
+        1. Passed parameter
+        2. Streamlit Cloud Secrets
+        3. Environment variable (.env)
         """
-        self.client = Groq(api_key=api_key or os.getenv("GROQ_API_KEY"))
+        resolved_key = (
+            api_key
+            or st.secrets.get("GROQ_API_KEY")
+            or os.getenv("GROQ_API_KEY")
+        )
+
+        if not resolved_key:
+            raise ValueError(
+                "Missing GROQ_API_KEY. Please configure your key in Streamlit Secrets or .env file."
+            )
+
+        self.client = Groq(api_key=resolved_key)
         self.model_name = model_name
 
     def generate_grounded_response(
@@ -31,7 +47,7 @@ class RAGEngine:
         formatted_context_blocks = []
         for i, chunk in enumerate(context_chunks, 1):
             meta = chunk["metadata"]
-            citation_tag = f"<sup>[Page {meta['page']}, Chunk {meta['chunk_index']}]</sup>"
+            citation_tag = f"[Page {meta['page']}, Chunk {meta['chunk_index']}]"
             block = f"--- CONTEXT BLOCK {i} {citation_tag} ---\n{chunk['text']}\n"
             formatted_context_blocks.append(block)
 
@@ -50,8 +66,8 @@ Provide a grounded response with inline citations:"""
             temperature=0.0,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt}
-            ]
+                {"role": "user", "content": user_prompt},
+            ],
         )
 
         answer = response.choices[0].message.content
