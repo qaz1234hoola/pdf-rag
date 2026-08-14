@@ -1,6 +1,14 @@
 import os
 from groq import Groq
 from typing import List, Dict, Any, Tuple
+import os
+import streamlit as st
+
+# Checks Streamlit Cloud Secrets first, then local .env / environment variables
+api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+
+if not api_key:
+    st.error("Missing GROQ_API_KEY. Please configure your key in Secrets or .env.")
 
 SYSTEM_PROMPT = """You are an ultra-strict Document QA Assistant. 
 Your single priority is absolute precision grounded strictly in the provided context documents.
