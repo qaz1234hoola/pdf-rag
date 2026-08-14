@@ -1,0 +1,18 @@
+# Environment variables (API Keys)
+.env
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Local Vector Database & Files
+chroma_db/
+*.pdf
+
+# System files
+.DS_Store
