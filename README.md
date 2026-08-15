@@ -14,7 +14,10 @@
 
 ## 🎬 Application Demo
 
-![PDF RAG Assistant Demo](assets/demo.gif)
+<img width="260" height="136" alt="ayw730" src="https://github.com/user-attachments/assets/28caee72-0342-4837-9d56-1ebd785b434b" />
+
+
+
 
 *Note: Replace `assets/demo.gif` with your actual GIF or screen recording demonstrating PDF ingestion, document chunking, and grounded Q&A with superscript citations.*
 
