@@ -20,7 +20,6 @@
 ## 📌 Features
 
 * 📄 **Strict PDF Grounding:** Completely eliminates AI hallucinations by enforcing strict reliance on uploaded document context.
-* <sup>[Page X, Chunk Y]</sup> **Superscript Web-Style Citations:** Inline references rendered as small, unobtrusive HTML superscripts at the end of cited claims.
 * ⚡ **High-Speed Vector Search:** Powered by ChromaDB and Groq's high-throughput LLaMA 3.3 70B inference engine.
 * 🛡️ **Robust Error Handling:** Comprehensive exception guards for corrupt PDFs, password protection, rate limits, and missing keys.
 * 🎨 **Interactive Interface:** Clean Streamlit UI with source attribution metadata pills and document workspace controls.
