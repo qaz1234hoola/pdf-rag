@@ -14,7 +14,7 @@
 
 ## 🎬 Application Demo
 
-**Application demo(https://www.loom.com/share/f826e8ec72ba422e9f8b2922b7812f0b)**
+(https://www.loom.com/share/f826e8ec72ba422e9f8b2922b7812f0b)
 ---
 
 ## 📌 Features
